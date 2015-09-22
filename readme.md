@@ -6,7 +6,7 @@ Application has been created by using angular for front end and the laravel 5.1 
 
 ## Installation
 
-### Download apllicaiton using composar or download as a zip file and install composer.
-### Install Node and npm for this project and run npm.
-### Intall gulp and run gulp for minify the dependency.
-### Run migrtions for create tables.
+##### Download apllicaiton using composar or download as a zip file and install composer.
+##### Install Node and npm for this project and run npm.
+##### Intall gulp and run gulp for minify the dependency.
+##### Run migrtions for create tables.
