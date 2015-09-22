@@ -1,0 +1,57 @@
+<form ng-submit="register($event)" class="form-horizontal">
+
+    <!-- Name -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="name" class=" control-label">Name </label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input type="text" id="name" class="form-control" ng-model="user.name" required>
+        </div>
+    </div>
+
+    <!-- Email address -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="email" class="control-label">Email Address </label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input type="email" id="email" class="form-control" ng-model="user.email">
+        </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="password" class="control-label">Password </label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input type="password" id="password" class="form-control" ng-model="user.password">
+        </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="password" class="control-label">Confirm Password </label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+                <input type="password" id="password_confirmation" class="form-control" ng-model="user.password_confirmation">
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-group">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+            <button class="btn btn-default form-control" type="reset">Clear </button>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-primary form-control" type="submit">Register</button>
+        </div>
+    </div>
+</form>

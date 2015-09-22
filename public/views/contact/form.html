@@ -1,0 +1,100 @@
+<form accept-charset="UTF-8" class="form-horizontal" ng-submit="saveContact($event)" id="contactForm">
+    <!-- contact id -->
+    <input type="hidden" id="id" name="id" ng-model="contact.id" />
+
+    <!-- salutation -->
+    <div class="form-group">
+        <label for="salutation" class="col-lg-3 control-label">Salutation</label>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="Mr." name="salutation" type="text" id="salutation" ng-model="contact.salutation" />
+        </div>
+    </div>
+
+    <!-- First Name -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="firstName" class="control-label">First Name</label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="First Name" ng-model="contact.firstName" name="firstName" type="text" id="firstName" />
+        </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="lastName" class="control-label">Last Name</label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="Last Name" ng-model="contact.lastName" name="lastName" type="text" id="lastName" />
+        </div>
+    </div>
+
+    <!-- Nic No -->
+    <div class="form-group">
+        <div class="col-lg-3 text-right">
+            <label for="nicNo" class="control-label">Nic No</label>
+            <font style="color: red">*</font>
+        </div>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="xxxxxxxxxx" ng-model="contact.nicNo" name="nicNo" type="text" id="nicNo" />
+        </div>
+    </div>
+
+    <!-- mobile Number -->
+    <div class="form-group">
+        <label for="mobileNo" class="col-lg-3  control-label">Mobile Number</label>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="+94 xx xxxxxxx" ng-model="contact.mobileNo" name="mobileNo" type="text" id="mobileNo" />
+        </div>
+    </div>
+
+    <!-- Fixed Line Number -->
+    <div class="form-group">
+        <label for="fixedlineNo" class="col-lg-3 control-label">Fixed line Number</label>
+        <div class="col-lg-6">
+            <input class="form-control" placeholder="+94 xx xxxxxxx" ng-model="contact.fixedlineNo" name="fixedlineNo" type="text" id="fixedlineNo" />
+        </div>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="form-group">
+        <label for="dateOfBirth" class="col-lg-3 control-label">Date Of Birth</label>
+        <div class="col-lg-6">
+            <p class="input-group">
+                <input class="form-control" readonly="readonly" show-weeks="false" show-button-bar="false" style="cursor:pointer; background-color: #FFFFFF" ng-model="contact.dateOfBirth" name="dateOfBirth" id="dateOfBirth" datepicker-popup="dd-MMMM-yyyy" is-open="showDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="showDate = ! showDate"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Address -->
+    <div class="form-group">
+        <label for="address" class="col-lg-3 control-label">Address</label>
+        <div class="col-lg-6">
+            <textarea class="form-control" placeholder="Address" ng-model="contact.address" name="address" cols="50" rows="10" id="address" />
+            </textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+            <button class="btn btn-default form-control" type="reset">
+                <i class="fa fa-remove"></i>
+                <span>Clear</span>
+            </button>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-primary form-control" type="submit">
+                <i class="fa fa-save"></i>
+                <span>Save</span>
+            </button>
+        </div>
+    </div>
+</form>

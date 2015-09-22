@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-lg-5 bootcards-list">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <!-- contact search -->
+                    <div class="col-lg-9">
+                        <div class="left-inner-addon">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control" autofocus placeholder="By First Name or Last Name..." ng-model="filterKey" />
+                        </div>
+                    </div>
+
+                    <!-- Create new contact -->
+                    <div class="col-lg-3">
+                        <a class="btn btn-primary btn-block" href="#contact">
+                            <i class="fa fa-plus"></i>
+                            <span>Add</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- contacts list -->
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="contact in contacts" ng-click="selectContact(contact)" ng-init="($first) ? selectContact(contact) : ''" ng-class="{active : isSelectedContact(contact)}">
+                    <h4 class="list-group-item-heading">
+                        <% contact.salutation %>
+                            <% contact.firstName %> ,
+                                <% contact.lastName %>.
+                    </h4>
+                    <p class="list-group-item-text">
+                        <% contact.nicNo %>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- full details -->
+    <div class="col-lg-7 bootcards-cards">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <div class="btn-group col-lg-2 ">
+                    <a class="btn btn-danger" ng-click="delete(selectedContact.id)">
+                        <i class="fa fa-trash-o"></i>
+                        <span>Remove</span>
+                    </a>
+                </div>
+                <div class="col-lg-8">
+                    <h3 class="panel-title text-center">Contact Details</h3>
+                </div>
+                <div class="btn-group col-lg-2">
+                    <a class="btn btn-primary" ng-href="#contact/<% selectedContact.id %>/edit">
+                        <i class="fa fa-pencil"></i>
+                        <span>Edit</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="list-group">
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-user pull-left"></i>
+                    <label>First Name</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.salutation %>
+                            <% selectedContact.firstName %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-user pull-left"></i>
+                    <label>Last Name</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.lastName %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-credit-card pull-left"></i>
+                    <label>National Identiy Number</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.nicNo %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-mobile-phone pull-left"></i>
+                    <label>Mobile Number</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.mobileNo %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-tty pull-left"></i>
+                    <label>Fixed Line Number</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.fixedlineNo %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-birthday-cake pull-left"></i>
+                    <label>Date Of Birth</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.dateOfBirth %>
+                    </h4>
+                </div>
+                <div class="list-group-item">
+                    <i class="fa fa-2x fa-map-marker pull-left"></i>
+                    <label>Address</label>
+                    <h4 class="list-group-item-heading">
+                        <% selectedContact.address %>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
