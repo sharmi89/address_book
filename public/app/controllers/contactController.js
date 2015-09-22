@@ -33,6 +33,9 @@ angular.module('ContactApp', ['contactService'])
             Contact.search(newValue)
                 .success(function(data, status, headers, config) {
                     $scope.contacts = data;
+                    if(data.length == 0){
+                      $scope.selectedContact = {};
+                    }
                     $scope.loading = false;
                 });
         });
