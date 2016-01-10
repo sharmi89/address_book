@@ -1,7 +1,5 @@
 var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ui.bootstrap', 'ngAnimate'])
     .controller('AppController', function($scope, Session, User) {
-        $scope.isAuthenticate = true;
-        // console.log(Session);
 
         // Log out current user
         $scope.logout = User.logout;
@@ -21,13 +19,34 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ui.bootstr
                 controller: 'UserAppController'
             }).when('/contacts', {
                 templateUrl: 'views/contact/list.html',
-                controller: 'ContactAppController'
+                controller: 'ContactAppController',
+                resolve: {
+                    authenticated: function($q, $location, User){
+                        return User.authenticate().then(null, function(response){
+                            return $q.reject();
+                        });
+                    }
+                }
             }).when('/contact', {
                 templateUrl: 'views/contact/form.html',
                 controller: 'ContactAppController',
+                resolve: {
+                    authenticated: function($q, $location, User){
+                        return User.authenticate().then(null, function(response){
+                            return $q.reject();
+                        });
+                    }
+                }
             }).when('/contact/:id/edit', {
                 templateUrl: 'views/contact/form.html',
                 controller: 'ContactAppController',
+                resolve: {
+                    authenticated: function($q, $location, User){
+                        return User.authenticate().then(null, function(response){
+                            return $q.reject();
+                        });
+                    }
+                }
             }).otherwise({
                 redirectTo: '/contacts'
             });
@@ -36,18 +55,4 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ui.bootstr
     .config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
-    })
-    .run(function($rootScope, $location, Session, $http) {
-        $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            // check user already authenticated
-            if (Session.userId == null && next.templateUrl !== 'views/user/login.html' && next.templateUrl !== 'views/user/register.html') {
-                $http.get('user/currentUser')
-                    .success(function(response) {
-                        Session.create(response.id, response.name);
-                    }).error(function(data, status, headers, config) {
-                        notify('danger', data.msg);
-                        $location.path("/login");
-                    });
-            }
-        });
     });

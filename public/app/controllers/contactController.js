@@ -3,7 +3,7 @@ angular.module('ContactApp', ['contactService'])
 
         $scope.contact = [];
         $scope.loading = false;
-
+        
         // initial fuctions call
         $scope.$on(
             "$routeChangeSuccess",

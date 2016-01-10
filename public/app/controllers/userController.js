@@ -1,24 +1,22 @@
 angular.module('UserApp', ['userService'])
     .controller('UserAppController', function($scope, $http, $route, $location, User, Session) {
 
-        $scope.student = [];
         $scope.loading = false;
 
-        $scope.authenticate = function(e) {
+        $scope.login = function(e) {
             e.preventDefault();
+            
             var user = {
                 email: $scope.user.email,
                 password: $scope.user.password,
             };
+
             // check user authentication
-            User.authenticate(user)
-                .success(function(response) {
-                    notify('success', response.msg);
-                    Session.create(response.id, response.name);
-                    $location.path("/students");
-                }).error(function(data, status, headers, config) {
-                    console.log('error');
-                });
+            User.login(user).then(function(){
+                $location.path("/contacts");
+            }, function(data){
+                notify('danger', data.msg);
+            });
         };
 
         // Register a user
@@ -34,8 +32,9 @@ angular.module('UserApp', ['userService'])
             User.register(userDate)
                 .success(function(response) {
                     notify('success', response.msg);
-                    $location.path("/students");
-                }).error(function(data, status, headers, config) {
+                    $location.path("/");
+                })
+                .error(function(data, status, headers, config) {
                     angular.forEach(data, function(value, key) {
                         var firstElement = Object.keys(data)[0];
                         var element = document.getElementById(firstElement).focus();

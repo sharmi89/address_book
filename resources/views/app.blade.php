@@ -33,12 +33,9 @@
                         <a href="#contacts" <i="" class="fa fa-users"> contacts</a>
                     </li>
                     <li>
-                        <a href="#" <i="" class="fa fa-gears"> User Settings</a>
-                    </li>
-                    <li ng-show="isAuthenticate">
                         <a href="#" ng-click="logout()" <i="" class="fa fa-sign-out"> Log Out</a>
                     </li>
-                    <li ng-show="isAuthenticate">
+                    <li ng-show="isAuthenticated">
                         <a href="#register" <i="" class="fa fa-user-plus"> New User</a>
                     </li>
                 </ul>

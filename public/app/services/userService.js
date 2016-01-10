@@ -1,12 +1,44 @@
 angular.module('userService', [])
 
-.factory('User', function($http, $location, Session) {
+.factory('User', function($q, $http, $location, Session) {
 
     return {
 
+        // check the user already authenticated
+        authenticate: function() {
+            var deferred = $q.defer();
+            
+            if(Session.userId){
+                deferred.resolve(Session.userId);
+            } else {
+                return $http.get('user/currentUser').success(function(response) {
+                    Session.create(response.id, response.name);
+                    deferred.resolve(response);
+                })
+                .error(function(response) {
+                    $location.path("/login");
+                    notify('danger', response.msg);
+                    deferred.reject(response);
+                });
+            }
+
+            return deferred.promise;
+            
+        },
+
         // check the user have authentication
-        authenticate: function(user) {
-            return $http.post('auth/login', user);
+        login: function(user) {
+            var deferred = $q.defer();
+
+            $http.post('auth/login', user).success(function(response){
+                Session.create(response.id, response.name);
+                deferred.resolve(response);
+            })
+            .error(function(response){
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
         },
 
         // register a user
@@ -15,12 +47,12 @@ angular.module('userService', [])
         },
 
         // Log out the current user
-        logout: function logout(e) {
+        logout: function(e) {
             return $http.get('auth/logout').success(function(response) {
                 Session.destroy();
                 $location.path("/login");
             });
-        },
+        }
     }
 
 })
