@@ -35,7 +35,7 @@
                     <li>
                         <a href="#" ng-click="logout()" <i="" class="fa fa-sign-out"> Log Out</a>
                     </li>
-                    <li ng-show="isAuthenticated">
+                    <li>
                         <a href="#register" <i="" class="fa fa-user-plus"> New User</a>
                     </li>
                 </ul>

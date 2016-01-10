@@ -1,4 +1,4 @@
-var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ui.bootstrap', 'ngAnimate'])
+var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'])
     .controller('AppController', function($scope, Session, User) {
 
         // Log out current user
