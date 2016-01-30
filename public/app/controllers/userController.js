@@ -1,5 +1,5 @@
 angular.module('UserApp', ['userService'])
-    .controller('UserAppController', function($scope, $http, $route, $location, User, Session) {
+    .controller('UserAppController', function($scope, $location, User) {
 
         $scope.loading = false;
 

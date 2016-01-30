@@ -1,5 +1,5 @@
 angular.module('ContactApp', ['contactService'])
-    .controller('ContactAppController', function($scope, $http, $route, $location, Contact) {
+    .controller('ContactAppController', function($scope, $route, $location, Contact) {
 
         $scope.contact = [];
         $scope.loading = false;

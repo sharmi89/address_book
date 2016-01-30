@@ -1,5 +1,5 @@
-var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'])
-    .controller('AppController', function($scope, Session, User) {
+var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute'])
+    .controller('AppController', function($scope, User) {
 
         // Log out current user
         $scope.logout = User.logout;
@@ -7,6 +7,10 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'
     .config(function($httpProvider) {
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+    })
+    .config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
     })
     .config(['$routeProvider',
         function($routeProvider) {
@@ -21,7 +25,7 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'
                 templateUrl: 'views/contact/list.html',
                 controller: 'ContactAppController',
                 resolve: {
-                    authenticated: function($q, $location, User){
+                    authenticated: function($q, User){
                         return User.authenticate().then(null, function(response){
                             return $q.reject();
                         });
@@ -31,7 +35,7 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'
                 templateUrl: 'views/contact/form.html',
                 controller: 'ContactAppController',
                 resolve: {
-                    authenticated: function($q, $location, User){
+                    authenticated: function($q, User){
                         return User.authenticate().then(null, function(response){
                             return $q.reject();
                         });
@@ -41,7 +45,7 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'
                 templateUrl: 'views/contact/form.html',
                 controller: 'ContactAppController',
                 resolve: {
-                    authenticated: function($q, $location, User){
+                    authenticated: function($q, User){
                         return User.authenticate().then(null, function(response){
                             return $q.reject();
                         });
@@ -51,8 +55,4 @@ var app = angular.module('App', ['UserApp', 'ContactApp', 'ngRoute', 'ngAnimate'
                 redirectTo: '/contacts'
             });
         }
-    ])
-    .config(function($interpolateProvider) {
-        $interpolateProvider.startSymbol('<%');
-        $interpolateProvider.endSymbol('%>');
-    });
+    ]);

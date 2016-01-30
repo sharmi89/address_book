@@ -11,7 +11,6 @@ elixir(function(mix) {
         '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
         '../../../node_modules/angular/angular.min.js',
         '../../../node_modules/angular-route/angular-route.min.js',
-        '../../../node_modules/angular-animate/angular-animate.min.js',
         'bootbox/bootbox.min.js',
         'bootstrap-notify/bootstrap-notify.min.js',
         'bootcards-1.1.2/bootcards.min.js'
