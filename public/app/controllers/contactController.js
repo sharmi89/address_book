@@ -3,19 +3,20 @@ angular.module('ContactApp', ['contactService'])
 
         $scope.contact = [];
         $scope.loading = false;
-        
+        $scope.contacts = [];
+
         // initial fuctions call
         $scope.$on(
             "$routeChangeSuccess",
-            function($currentRoute) {
+            function(e, current) {
                 // call initial functions
-                if (path = $route.current.originalPath) {
+                if (path = current.$$route.originalPath) {
                     switch (path) {
                         case '/contacts':
-                            getContacts();
+                            $scope.getContacts();
                             break;
                         case '/contact/:id/edit':
-                            getContact($route.current.params.id);
+                            $scope.getContact(current.pathParams.id);
                             break;
                         default:
 
@@ -51,7 +52,7 @@ angular.module('ContactApp', ['contactService'])
         }
 
         // get all contacts
-        function getContacts() {
+        $scope.getContacts = function() {
             $scope.loading = true;
             Contact.search()
                 .success(function(data) {
@@ -64,7 +65,7 @@ angular.module('ContactApp', ['contactService'])
         }
 
         // get a contact by id
-        function getContact(id) {
+        $scope.getContact = function(id) {
             $scope.loading = true;
             Contact.edit(id)
                 .success(function(data, status, headers, config) {

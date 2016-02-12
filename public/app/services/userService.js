@@ -16,6 +16,7 @@ angular.module('userService', [])
                     deferred.resolve(response);
                 })
                 .error(function(response) {
+                    Session.destroy();
                     $location.path("/login");
                     notify('danger', response.msg);
                     deferred.reject(response);
@@ -35,6 +36,7 @@ angular.module('userService', [])
                 deferred.resolve(response);
             })
             .error(function(response){
+                Session.destroy();
                 deferred.reject(response);
             });
 
@@ -58,12 +60,14 @@ angular.module('userService', [])
 })
 
 .service('Session', function() {
+    this.userId = '';
+    this.userName = '';
     this.create = function(userId, userName) {
-        this.id = userId;
-        this.userId = userName;
+        this.userId = userId;
+        this.userName = userName;
     };
     this.destroy = function() {
-        this.id = null;
-        this.userId = null;
+        this.userId = '';
+        this.userName = '';
     };
 });
