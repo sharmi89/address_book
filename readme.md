@@ -4,6 +4,8 @@ The simple SPA application for Create, update and edit the conacts with login sy
 
 Application has been created by using angular for front end and the laravel 5.1 for back end. Bootstarp 3, Bootcards, Bootbox and bootstrap notify were used for front end designing. node and npm were used for the package indicreation. Gulp and laravel elixir were used for minify the package javascript and css. Angular has been used with module wise.
 
+Some front-end code explanations in this [blog](https://shaamcodes.com/simple-address-book-with-angular-and-laravel-5-1/)
+
 ## Installation
 1. Download application using composer or as a zip file and then install composer. You may have to give file permissions to /public and /storage folders in linux distributions. [Refer](https://laravel.com/docs/5.2/installation)
 2. Setup back-end configurations for database and vhost and then run table migrations.
